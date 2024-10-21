@@ -19,7 +19,6 @@ const Navbar: React.FC = () => {
     AOS.init();
     AOS.refresh();
 
-    // Set initial mode based on local storage
     const savedMode = localStorage.getItem("darkMode") === "true";
     setDarkMode(savedMode);
     if (savedMode) {
@@ -31,7 +30,6 @@ const Navbar: React.FC = () => {
     const newMode = !darkMode;
     setDarkMode(newMode);
     document.body.classList.toggle("dark-mode", newMode);
-    // Save the preference in local storage
     localStorage.setItem("darkMode", newMode.toString());
   };
 
@@ -46,7 +44,7 @@ const Navbar: React.FC = () => {
         data-aos="fade-down"
         data-aos-duration="1400"
       >
-        <h1 className="pl-20 text-xl">
+        <h1 className="text-xl">
           <Typewriter
             options={{
               autoStart: true,
@@ -68,12 +66,14 @@ const Navbar: React.FC = () => {
             }}
           />
         </h1>
-        <div className="md:hidden pr-20">
-          <button onClick={() => setIsOpen(!isOpen)}>
-            <MdOutlinePerson />
+        <div className="md:hidden">
+          <button onClick={() => setIsOpen(!isOpen)} aria-label="Menu">
+            <MdOutlinePerson size={28} />
           </button>
         </div>
-        <div className="hidden md:flex space-x-4 pr-20">
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex space-x-6">
           <a
             href="#"
             className="navRoutes hover:text-blue-400 flex items-center"
@@ -110,31 +110,49 @@ const Navbar: React.FC = () => {
           </a>
           <button
             onClick={toggleDarkMode}
-            className={`navRoutes hover:text-yellow-400 ml-4 p-2 rounded${
+            className={`navRoutes hover:text-yellow-400 flex items-center p-2 rounded ${
               darkMode ? "text-white" : "text-black"
             }`}
           >
-            <MdOutlineDarkMode size={20} />
+            <MdOutlineDarkMode size={20} className="mr-2" />
+            <span>Dark Mode</span>
           </button>
         </div>
       </div>
 
-      {isOpen && (
-        <div className="md:hidden mt-4 space-y-2 pr-20 pl-20">
-          <a href="#" className="block hover:text-gray-400">
-            Home
+      {/* Mobile Dropdown */}
+      <div
+        className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
+          isOpen ? "max-h-screen" : "max-h-0"
+        }`}
+      >
+        <div className="navbar-dropdown mt-4 space-y-4 bg-black text-white p-4 rounded-lg">
+          <a href="#" className="hover:text-gray-400">
+            <MdOutlineHome size="19" className="mr-2 inline" /> Home
           </a>
-          <a href="#" className="block hover:text-gray-400">
-            About
+          <a href="#" className="hover:text-gray-400">
+            <MdOutlinePerson size="20" className="mr-2 inline" /> About
           </a>
-          <a href="#" className="block hover:text-gray-400">
-            Blog
+          <a href="#" className="hover:text-gray-400">
+            <MdOutlineBook size="17" className="mr-2 inline" /> Blog
           </a>
-          <a href="#" className="block hover:text-gray-400">
-            Contact
+          <a href="#" className="hover:text-gray-400">
+            <MdOutlineComment size="17" className="mr-2 inline" /> Contact
           </a>
+          <a href="#" className="hover:text-gray-400">
+            <MdOutlineViewInAr size="17" className="mr-2 inline" /> DSA Solves
+          </a>
+          <button
+            onClick={toggleDarkMode}
+            className={`hover:text-yellow-400 flex items-center p-2 rounded ${
+              darkMode ? "text-white" : "text-black"
+            }`}
+          >
+            <MdOutlineDarkMode size={20} className="mr-2" />
+            <span>Dark Mode</span>
+          </button>
         </div>
-      )}
+      </div>
     </nav>
   );
 };

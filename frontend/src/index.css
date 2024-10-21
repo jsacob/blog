@@ -16,7 +16,6 @@ body {
   background-color: rgb(240, 240, 240);
   color: black;
   transition: background-color 1s ease, color 1s ease;
-    
 }
 
 /* DARK MODE BODY BACKGROUND COLOR/WORD COLOR */
@@ -25,7 +24,7 @@ body.dark-mode {
   color: white;
   height: 100vh;
   width: 100%;
-  background-size: 300% 300%; 
+  background-size: 300% 300%;
   animation: gradientShift 12s ease-in-out infinite;
 }
 
@@ -48,12 +47,54 @@ nav {
 
 .navRoutes:hover {
   transform: translateY(7px);
-  
 }
 .navRoutes {
   transition: transform 0.3s ease-in-out;
 }
 
-.postContainer{
-    transition: transform 0.3s ease-in-out;
+.postContainer {
+  transition: transform 0.3s ease-in-out;
+}
+/* Smooth dropdown animation */
+.dropdown-enter {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.dropdown-enter-active {
+  max-height: 300px; /* Adjust based on the actual height of your dropdown */
+  opacity: 1;
+}
+
+.dropdown-exit {
+  max-height: 300px;
+  opacity: 1;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in, opacity 0.3s ease-in;
+}
+
+.dropdown-exit-active {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* Background for mobile dropdown */
+.navbar-dropdown {
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem; /* Optional: for rounded corners */
+}
+
+.navbar-dropdown a {
+  display: block;
+  padding: 0.5rem 0;
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-dropdown a:hover {
+  color: #ccc; /* Lighten on hover */
 }

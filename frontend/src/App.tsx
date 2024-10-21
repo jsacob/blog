@@ -3,14 +3,13 @@ import "./index.css";
 
 //componets path
 import BlogPage from "./routes/BlogPage";
-import Test from "./routes/route2test"; 
-
+import PostPage from "./components/PostPage";
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/blog" element={<BlogPage />} />
-        <Route path="/testroute" element={<Test />} />
+        <Route path="/posts/:id" element={<PostPage />} />
       </Routes>
     </Router>
   );

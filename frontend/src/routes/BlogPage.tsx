@@ -1,9 +1,11 @@
-// Home.tsx
-import Blog from "../components/Blog";
+// Blog.tsx
+import Navbar from "../components/Navbar";
+import PostDisplay from "../components/Post";
 const BlogPage: React.FC = () => {
   return (
     <>
-      <Blog />
+      <Navbar />
+      <PostDisplay />
     </>
   );
 };
